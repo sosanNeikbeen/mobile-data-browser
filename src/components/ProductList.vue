@@ -11,6 +11,7 @@
             placeholder="Search carrier"
           />
         </p>
+
         <div class="select">
           <select v-model="sortBy">
             <option :key="option" v-for="option in filterOptions">
@@ -23,6 +24,7 @@
           <h3 v-else>Ascending</h3>
         </Button>
       </div>
+      <Spinner v-if="isLoading" />
 
       <p class="pt-6" v-if="!products || products.length === 0">
         No products found
@@ -49,14 +51,17 @@
 import Product from "./Product";
 import Button from "./Button";
 import productData from "../api/productData";
+import Spinner from "./Spinner";
 
 export default {
   components: {
     Product,
     Button,
+    Spinner,
   },
   data() {
     return {
+      isLoading: true,
       products: [],
       ascending: true,
       searchValue: "",
@@ -140,6 +145,7 @@ export default {
       }
 
       this.products = res.data;
+      this.isLoading = false;
     },
   },
   mounted() {
