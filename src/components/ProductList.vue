@@ -91,8 +91,8 @@ export default {
       // Sort by By Country Code
       tempProducts = tempProducts.sort((a, b) => {
         if (this.sortBy == "By Country Code") {
-          let fa = a.carrier.country_code_iso3.toLowerCase(),
-            fb = b.carrier.country_code_iso3.toLowerCase();
+          let fa = a.carrier.country_code_iso3.toLowerCase();
+          let fb = b.carrier.country_code_iso3.toLowerCase();
 
           if (fa < fb) {
             return -1;
@@ -104,8 +104,8 @@ export default {
 
           // Sort by By carrier name
         } else if (this.sortBy == "By carrier name") {
-          let fa = a.carrier.name.toLowerCase(),
-            fb = b.carrier.name.toLowerCase();
+          let fa = a.carrier.name.toLowerCase();
+          let fb = b.carrier.name.toLowerCase();
 
           if (fa < fb) {
             return -1;
@@ -117,9 +117,7 @@ export default {
 
           // Sort by By plan size
         } else if (this.sortBy == "By plan size") {
-          if (a.plan.unit === "MB" && b.plan.unit === "MB") {
-            return a.plan.size - b.plan.size;
-          }
+          return a.plan.size - b.plan.size;
         }
       });
 
